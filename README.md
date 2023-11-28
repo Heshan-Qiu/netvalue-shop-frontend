@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Frontend for NetValue Shop
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This frontend application is developed using the Next.js framework, focusing on user interaction and management features. It includes user authentication, product CRUD operations for admins, product listing, cart management, and more. Authentication is handled using Next-Auth.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   User authentication (login/logout) with Next-Auth.
+-   CRUD operations on products by administrators.
+-   Product listing for customers.
+-   Adding products to the shopping cart.
+-   Shopping cart checkout interface (static).
+-   Admin view for shopping carts.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+-   **Framework**: Next.js
+-   **Authentication**: Next-Auth
+-   **State Management**: [Add if any, e.g., Redux, Context API]
+-   **Styling**: [Add if any, e.g., CSS, Sass, Styled Components]
+-   **API Interaction**: Axios or Fetch API (for backend communication)
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+Follow these steps to set up the project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repository:
+   git clone https://github.com/Heshan-Qiu/netvalue-shop-frontend.git
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Install dependencies:
+   npm install
 
-## Deploy on Vercel
+3. Configure environment variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   Set up the necessary API endpoints and authentication configurations in a `.env.local` file.
+    -   AUTH_SECRET=
+    -   AUTH_URL=
+    -   NEXT_PUBLIC_API_URL=
+    -   NEXT_PUBLIC_API_KEY=
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Run the development server:
+   npm run dev
+
+## Running the Application
+
+-   Navigate to the application in a web browser at `http://localhost:3000` (or your configured port).
+-   Log in as either a customer or an administrator to access different functionalities.
+
+## Usage
+
+-   **User Authentication**: Use the login/logout feature to access user-specific functionalities.
+-   **Admin Panel**: Accessible to admin users for managing products.
+-   **Product Listing**: Browse through the list of products.
+-   **Cart Management**: Add products to the cart and proceed to checkout.
+-   **Checkout Interface**: Review selected products in the shopping cart (Note: This is a static interface as of the current version).
+-   **Admin Cart View**: Admins can view details of shopping carts.
+
+## Contact
+
+For any queries or contributions, feel free to contact me at heshan.chiu@gmail.com or open an issue in this repository.
+
+## Screenshots
+
+### User Login Page
+
+![User Login Page](screenshots/login.png)
+
+### Customer Product Tiled Layout View
+
+![Customer Product Tiled Layout View](screenshots/customer-products.png)
+
+### Admin Product Management
+
+![Admin Product Management](screenshots/admin-products.png)
+
+### Shopping Cart
+
+![Shopping Cart](screenshots/cart.png)
