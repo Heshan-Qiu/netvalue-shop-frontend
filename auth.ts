@@ -1,23 +1,39 @@
+require("dotenv").config();
+
 import NextAuth from "next-auth";
 import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import type { User } from "@/app/lib/definitions";
 import bcrypt from "bcrypt";
+import customAxios from "@/app/lib/axios";
 
 async function getUser(email: string): Promise<User | undefined> {
     try {
-        // Mock user data
-        const mockUser = {
-            id: "1", // Assumed user ID
-            name: "User", // Assumed user name
-            email: "user@netvalue.nz", // Use the passed-in email
-            password:
-                "$2b$10$J2A2aadQONYFdb0equU4bOxGcBH233fQ0pFlXTpcU/owqSE11G7Ky", // bcrypt-hashed assumed password
-        };
+        const response = await customAxios
+            .get(`${process.env.NEXT_PUBLIC_API_URL}/users/${email}`)
+            .catch((error) => {
+                console.log(error);
+                if (error.response && error.response.status === 404) {
+                    console.debug("User not found:", email);
+                    return undefined;
+                }
+                throw new Error("Failed to fetch user.");
+            });
 
-        return mockUser;
-        // Note: Here we are directly returning mock data, no database query is performed
+        if (response && response.data) {
+            console.debug("User found:", response.data);
+            const user = {
+                id: response.data.user_id,
+                name: response.data.role,
+                email: response.data.email,
+                password: response.data.password,
+                role: response.data.role,
+            };
+            return user;
+        }
+
+        return undefined;
     } catch (error) {
         console.error("Failed to fetch user:", error);
         throw new Error("Failed to fetch user.");
@@ -51,6 +67,10 @@ export const { auth, signIn, signOut } = NextAuth({
                     );
                     if (passwordMatch) {
                         console.log("Credentials match for user", user);
+                        const sessionUser = {
+                            name: user.role,
+                            email: user.email,
+                        };
                         return user;
                     }
                 }

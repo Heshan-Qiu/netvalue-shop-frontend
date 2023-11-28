@@ -1,31 +1,95 @@
+import customAxios from "./axios";
+
+const ITEMS_PER_PAGE = 6;
+
 export async function fetchFilteredProducts(
     query: string,
     currentPage: number
 ) {
-    // Mock 6 products
-    const products = [...Array(6)].map((_, index) => ({
-        id: ((currentPage - 1) * 6 + index + 1).toString(),
-        name: "Product" + ((currentPage - 1) * 6 + index + 1),
-        sku: "SKU" + ((currentPage - 1) * 6 + index + 1),
-        price: 100 + index,
-        description: "Description" + index,
-        image_url: "/products/product.png",
-    }));
+    const response = await customAxios
+        .get(
+            `${process.env.NEXT_PUBLIC_API_URL}/products?search=${query}&page=${currentPage}&limit=${ITEMS_PER_PAGE}`
+        )
+        .catch((error) => {
+            console.log(error);
+            throw new Error("Failed to fetch products.");
+        });
 
-    return products;
+    if (response && response.data) {
+        const { page, totalPages, limit, total, data } = response.data;
+        return data;
+    }
+
+    return [];
 }
 
 export async function fetchProductsPages(query: string) {
-    return 10;
+    const response = await customAxios
+        .get(
+            `${process.env.NEXT_PUBLIC_API_URL}/products/total?search=${query}`
+        )
+        .catch((error) => {
+            console.log(error);
+            throw new Error("Failed to fetch products.");
+        });
+
+    if (response && response.data) {
+        console.debug("Total products found:", response.data);
+        const { count } = response.data;
+        return Math.floor(
+            (parseInt(count) + ITEMS_PER_PAGE - 1) / ITEMS_PER_PAGE
+        );
+    }
+
+    return 0;
 }
 
 export async function fetchProductById(id: string) {
-    return {
-        id: id,
-        name: "Product" + id,
-        sku: "SKU" + id,
-        price: 100,
-        description: "Description" + id,
-        image_url: "/products/product.png",
-    };
+    const response = await customAxios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`)
+        .catch((error) => {
+            console.log(error);
+            throw new Error("Failed to fetch product.");
+        });
+
+    if (response && response.data) {
+        console.debug("Product found:", response.data);
+        return response.data;
+    }
+
+    return undefined;
+}
+
+export async function fetchCartItemsByEmail(userEmail: string) {
+    const response = await customAxios
+        .get(
+            `${process.env.NEXT_PUBLIC_API_URL}/carts/${encodeURIComponent(
+                userEmail
+            )}`
+        )
+        .catch((error) => {
+            console.log(error);
+            throw new Error("Failed to fetch cart items.");
+        });
+
+    if (response && response.data) {
+        return response.data;
+    }
+
+    return [];
+}
+
+export async function fetchCarts() {
+    const response = await customAxios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/carts`)
+        .catch((error) => {
+            console.log(error);
+            throw new Error("Failed to fetch carts.");
+        });
+
+    if (response && response.data) {
+        return response.data;
+    }
+
+    return [];
 }

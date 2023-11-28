@@ -189,7 +189,7 @@ export default function EditProductForm({ product }: { product: ProductForm }) {
                 >
                     Cancel
                 </Link>
-                <Button type="submit">Create Product</Button>
+                <Button type="submit">Edit Product</Button>
             </div>
         </form>
     );

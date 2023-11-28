@@ -16,15 +16,20 @@ export default function Page() {
                     <p
                         className={`${lusitana.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}
                     >
-                        <strong>Welcome to Acme.</strong> This is the example
-                        for the{" "}
-                        <a
-                            href="https://nextjs.org/learn/"
-                            className="text-blue-500"
-                        >
-                            Next.js Learn Course
-                        </a>
-                        , brought to you by Vercel.
+                        <strong>Welcome to NetValue Shop.</strong> This is the
+                        demo website for the Web UI Coding Challenge.
+                    </p>
+                    <p
+                        className={`${lusitana.className} text-xl text-gray-800 md:leading-normal`}
+                    >
+                        Test administrator user: admin@netvalue.nz Password:
+                        123456
+                    </p>
+                    <p
+                        className={`${lusitana.className} text-xl text-gray-800 md:leading-normal`}
+                    >
+                        Test customer user: customer@netvalue.nz Password:
+                        123456
                     </p>
                     <Link
                         href="/login"

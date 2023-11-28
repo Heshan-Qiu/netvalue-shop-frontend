@@ -1,6 +1,12 @@
-import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+    PencilIcon,
+    PlusIcon,
+    TrashIcon,
+    ShoppingCartIcon,
+    CheckIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { deleteProduct } from "@/app/lib/actions";
+import { deleteProduct, addProductToCart } from "@/app/lib/actions";
 
 export function CreateProduct() {
     return (
@@ -35,5 +41,39 @@ export function DeleteProduct({ id }: { id: string }) {
                 <TrashIcon className="w-5" />
             </button>
         </form>
+    );
+}
+
+export function AddProductToCart({
+    props,
+}: {
+    props: {
+        userEmail: string;
+        productId: string;
+        quantity: number;
+        price: number;
+    };
+}) {
+    const addProductToCartWithProps = addProductToCart.bind(null, props);
+
+    return (
+        <form action={addProductToCartWithProps}>
+            <button className="rounded-md border p-2 hover:bg-gray-100">
+                <span className="sr-only">Add to cart</span>
+                <ShoppingCartIcon className="w-5" />
+            </button>
+        </form>
+    );
+}
+
+export function Checkout() {
+    return (
+        <Link
+            href="/dashboard/carts/checkout"
+            className="flex h-10 items-center rounded-lg bg-red-600 px-4 text-sm font-medium text-white transition-colors hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+        >
+            <span className="hidden md:block">Checkout</span>{" "}
+            <CheckIcon className="h-5 md:ml-4" />
+        </Link>
     );
 }

@@ -110,3 +110,76 @@ export function ProductsTableSkeleton() {
         </div>
     );
 }
+
+export function ProductsTiledRowSkeleton() {
+    return (
+        <div className="flex-1 min-w-[240px] max-w-[300px] bg-white p-4 rounded-md border border-gray-300">
+            <div className="flex items-center justify-between border-b pb-4">
+                <div className="flex items-center">
+                    <div className="h-8 w-8 rounded-full bg-gray-100"></div>
+                    <div className="h-6 w-24 rounded bg-gray-100"></div>
+                </div>
+                <div className="h-6 w-16 rounded bg-gray-100"></div>
+            </div>
+            <div className="flex items-center justify-between pt-4">
+                <div className="flex flex-col text-sm">
+                    <div className="h-6 w-32 rounded bg-gray-100"></div>
+                    <div className="mt-2 h-6 w-24 rounded bg-gray-100"></div>
+                </div>
+                <div className="flex gap-2">
+                    <div className="h-10 w-10 rounded bg-gray-100"></div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export function ProductsTiledSkeleton() {
+    return (
+        <div className="mt-6">
+            <div className="flex flex-wrap gap-4">
+                <ProductsTiledRowSkeleton />
+                <ProductsTiledRowSkeleton />
+                <ProductsTiledRowSkeleton />
+                <ProductsTiledRowSkeleton />
+                <ProductsTiledRowSkeleton />
+                <ProductsTiledRowSkeleton />
+            </div>
+        </div>
+    );
+}
+
+export function CardSkeleton() {
+    return (
+        <div
+            className={`${shimmer} relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+        >
+            <div className="flex p-4">
+                <div className="h-5 w-5 rounded-md bg-gray-200" />
+                <div className="ml-2 h-6 w-16 rounded-md bg-gray-200 text-sm font-medium" />
+            </div>
+            <div className="flex items-center justify-center truncate rounded-xl bg-white px-4 py-8">
+                <div className="h-7 w-20 rounded-md bg-gray-200" />
+            </div>
+        </div>
+    );
+}
+
+export function CustomerCardsSkeleton() {
+    return (
+        <>
+            <CardSkeleton />
+            <CardSkeleton />
+        </>
+    );
+}
+
+export function AdminCardsSkeleton() {
+    return (
+        <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+        </>
+    );
+}
