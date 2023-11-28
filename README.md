@@ -68,11 +68,11 @@ For any queries or contributions, feel free to contact me at heshan.chiu@gmail.c
 
 ### Customer Product Tiled Layout View
 
-![Customer Product Tiled Layout View](screenshots/customer-products.png)
+![Customer Product Tiled Layout View](screenshots/customer-product.png)
 
 ### Admin Product Management
 
-![Admin Product Management](screenshots/admin-products.png)
+![Admin Product Management](screenshots/admin-product.png)
 
 ### Shopping Cart
 
